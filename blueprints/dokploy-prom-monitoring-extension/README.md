@@ -107,6 +107,12 @@ services:
 
 ## Security Notes
 
+> **⚠️ CRITICAL SECURITY WARNING**
+>
+> The `/metrics/prometheus` endpoint is **unauthenticated** by design to support standard Prometheus scrapers. This means **anyone with network access to this endpoint can view your server and container metrics**.
+>
+> **YOU MUST implement one of the following security measures:**
+
 The `/metrics/prometheus` endpoint is **unauthenticated** by design to support standard Prometheus scrapers. Secure it using:
 
 1. **Firewall rules**: Restrict access to your Prometheus server IP

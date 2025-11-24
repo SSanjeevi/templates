@@ -85,6 +85,8 @@ if ! grep -q "METRICS_CONFIG" "$TEMPLATE_DIR/template.toml"; then
   echo "❌ FAIL: METRICS_CONFIG environment variable not found"
   exit 1
 fi
+# Note: Using string matching to verify JSON structure is embedded correctly
+# This is intentional - we're validating the template configuration, not runtime JSON
 # Check for key configuration fields in METRICS_CONFIG
 for field in "refreshRate" "port" "token" "urlCallback" "retentionDays" "thresholds" "prometheus"; do
   if ! grep -q "\"$field\"" "$TEMPLATE_DIR/template.toml"; then
@@ -175,7 +177,7 @@ echo "✅ PASS: Prometheus integration is documented and configured"
 # Test 14: Validate configurable variables
 echo ""
 echo "Test 14: Validate configurable variables"
-REQUIRED_VARS=("main_domain" "monitoring_token" "refresh_rate" "enable_prometheus")
+REQUIRED_VARS=("main_domain" "monitoring_token" "refresh_rate" "callback_url" "server_type" "retention_days" "cpu_threshold" "memory_threshold")
 for var in "${REQUIRED_VARS[@]}"; do
   if ! grep -q "^$var = " "$TEMPLATE_DIR/template.toml"; then
     echo "❌ FAIL: Missing required variable: $var"
