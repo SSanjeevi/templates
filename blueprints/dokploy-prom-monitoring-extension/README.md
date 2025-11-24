@@ -50,7 +50,8 @@ The template provides the following configurable variables:
 - **retention_days**: How long to keep metrics in database (default: 7)
 - **cpu_threshold**: CPU usage % to trigger alerts (default: 80, 0 = disabled)
 - **memory_threshold**: Memory usage % to trigger alerts (default: 85, 0 = disabled)
-- **enable_prometheus**: Enable Prometheus metrics endpoint (default: true)
+
+> **Note**: Prometheus metrics endpoint (`/metrics/prometheus`) is **always enabled** by default to support monitoring integrations.
 
 ## Quick Start
 
